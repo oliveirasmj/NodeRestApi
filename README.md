@@ -111,3 +111,8 @@ paths: \
   /articles/all: \
     get: \
       summary: "List all articles"
+
+
+
+
+—> Criar index.html em public \
