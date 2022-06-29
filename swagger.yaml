@@ -32,7 +32,7 @@ paths:
                     idiom:
                       type: string
         '404':
-              description: "Resource not found"
+          description: "Resource not found"
   /articles/{articleId}:
     get:
       summary: "Get the article id"
@@ -65,5 +65,5 @@ paths:
                       example: "2019-05-17"
                     idiom:
                       type: string
-            '404':
-              description: "Resource not found"
+        '404':
+          description: "Resource not found"

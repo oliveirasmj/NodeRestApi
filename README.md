@@ -84,3 +84,30 @@ VALUES ('Artigo1', 50, 'Mike', current_timestamp, 'PT');
 
 
 
+—> Instalar Swagger \
+❯ npm i swagger-ui-express -S \
+❯ npm i js-yaml
+
+
+—> Adicionar swagger ao app.js a seguir ao var logger \
+const swaggerUI = require('swagger-ui-express'); \
+var fs = require('fs'); \
+var jsyaml = require('js-yaml'); \
+var spec = fs.readFileSync('swagger.yaml', 'utf8'); \
+swaggerDocument = jsyaml.load(spec);
+
+
+—> Adicionar rota no app.js \
+app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(swaggerDocument));
+
+
+—> Criar ficheiro swagger.yaml \
+penapi: "3.0.3" \
+info: \
+  title: "Tasks Application" \
+  description: "Small academic example" \
+  version: "1.0.0" \
+paths: \
+  /articles/all: \
+    get: \
+      summary: "List all articles"
