@@ -113,6 +113,7 @@ paths: \
       summary: "List all articles"
 
 
+—> Aceder a http://localhost:3000/api-docs/
 
 
-—> Criar index.html em public \
+—> Criar index.html em public
