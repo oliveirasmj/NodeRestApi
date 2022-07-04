@@ -102,17 +102,46 @@ app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(swaggerDocument));
 
 
 —> Criar ficheiro swagger.yaml \
-penapi: "3.0.3" \
-info: \
-  title: "Tasks Application" \
-  description: "Small academic example" \
-  version: "1.0.0" \
-paths: \
-  /articles/all: \
-    get: \
+openapi: "3.0.3"
+info:
+  title: "Tasks Application"
+  description: "Small academic example"
+  version: "1.0.0"
+paths:
+  /articles/all:
+    get:
       summary: "List all articles"
+      responses:
+        '200':
+          description: "Successfully fetched all articles"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: number
+                    article_name:
+                      type: string
+                    number_pages:
+                      type: number
+                    author_name:
+                      type: string
+                    created_on:
+                      type: date
+                      pattern: /([0-9]{4})-(?:[0-9]{2})-([0-9]{2})/
+                      example: "2019-05-17"
+                    idiom:
+                      type: string
+        '404':
+          description: "Resource not found"
 
 
 
 
-—> Criar index.html em public \
+—> Aceder a http://localhost:3000/api-docs/
+
+
+—> Criar index.html em public
