@@ -109,3 +109,29 @@ paths:
 </script>
 
 </html>
+
+
+—> Postman
+GET: http://localhost:3000/articles/all
+GET: http://localhost:3000/articles/1
+POST: http://localhost:3000/articles/new
+	Headers: Accept-Encoding + application/json
+	Body: Raw = JSON
+	{
+    		"article_name": "Artigo6",
+    		"number_pages": 200,
+    		"author_name": "Maria",
+    		"created_on": "2022-06-29 09:57:36.891598",
+    		"idiom": "PT"
+	}
+DELETE: http://localhost:3000/articles/delete/6
+PUT: http://localhost:3000/articles/update/3
+	Headers: Accept-Encoding + application/json
+	Body: Raw = JSON
+	{
+    		"article_name": "ArtigoXXX”,
+    		"number_pages": 200,
+    		"author_name": "Maria",
+    		"created_on": "2022-06-29 09:57:36.891598",
+    		"idiom": "PT"
+	}
