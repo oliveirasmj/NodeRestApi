@@ -102,18 +102,71 @@ app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(swaggerDocument));
 
 
 —> Criar ficheiro swagger.yaml \
-penapi: "3.0.3" \
-info: \
-  title: "Tasks Application" \
-  description: "Small academic example" \
-  version: "1.0.0" \
-paths: \
-  /articles/all: \
-    get: \
+openapi: "3.0.3"
+info:
+  title: "Tasks Application"
+  description: "Small academic example"
+  version: "1.0.0"
+paths:
+  /articles/all:
+    get:
       summary: "List all articles"
+      responses:
+        '200':
+          description: "Successfully fetched all articles"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: number
+                    article_name:
+                      type: string
+                    number_pages:
+                      type: number
+                    author_name:
+                      type: string
+                    created_on:
+                      type: date
+                      pattern: /([0-9]{4})-(?:[0-9]{2})-([0-9]{2})/
+                      example: "2019-05-17"
+                    idiom:
+                      type: string
+        '404':
+          description: "Resource not found"
+
+
 
 
 —> Aceder a http://localhost:3000/api-docs/
 
 
 —> Criar index.html em public
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <ul id="articles"></ul>
+</body>
+<script>
+    $.ajax({
+        url: '/articles/all',
+        type:'GET',
+        success: function(data){
+            data.map((val) => {
+            $('#articles').append('<li>id:'+val.id+' - name: '+val.article_name+'</li>')
+        });
+        }
+    });
+</script>
+</html>
