@@ -145,28 +145,3 @@ paths:
 
 
 —> Criar index.html em public
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <title>Document</title>
-</head>
-<body>
-    <ul id="articles"></ul>
-</body>
-<script>
-    $.ajax({
-        url: '/articles/all',
-        type:'GET',
-        success: function(data){
-            data.map((val) => {
-            $('#articles').append('<li>id:'+val.id+' - name: '+val.article_name+'</li>')
-        });
-        }
-    });
-</script>
-</html>
